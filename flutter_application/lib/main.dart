@@ -12,74 +12,106 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(primarySwatch: Colors.blue),
-        home: Container(
-          color: Colors.white,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
+        home: Scaffold(
+          appBar: AppBar(
+            leading: Container(),
+            title: const Text('Tarefas'),
+          ),
+          body: ListView(
             children: [
-              Stack(alignment: AlignmentDirectional.center, children: [
-                Container(
-                  color: Colors.red,
-                  width: 100,
-                  height: 100,
-                ),
-                Container(
-                  color: Colors.blue,
-                  width: 50,
-                  height: 50,
-                )
-              ]),
-              Stack(alignment: AlignmentDirectional.center, children: [
-                Container(
-                  color: Colors.blue,
-                  width: 100,
-                  height: 100,
-                ),
-                Container(
-                  color: Colors.red,
-                  width: 50,
-                  height: 50,
-                )
-              ]),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    color: Colors.cyan,
-                    height: 50,
-                    width: 50,
-                  ),
-                  Container(
-                    color: Colors.pinkAccent,
-                    height: 50,
-                    width: 50,
-                  ),
-                  Container(
-                    color: Colors.purple,
-                    height: 50,
-                    width: 50,
-                  )
-                ],
-              ),
-              Container(
-                color: Colors.amber,
-                height: 30,
-                width: 10000,
-                child: const Text(
-                  'Flutter',
-                  style: TextStyle(color: Colors.black, fontSize: 24),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    print('Ok');
-                  },
-                  child: const Text('Press!'))
+              Task('Tuca Lover'),
             ],
           ),
+          floatingActionButton: FloatingActionButton(onPressed: () {}),
         ));
+  }
+}
+
+class Task extends StatefulWidget {
+  final String nome;
+  const Task(this.nome, {super.key});
+
+  @override
+  State<Task> createState() => _TaskState();
+}
+
+class _TaskState extends State<Task> {
+  int nivel = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+          child: Stack(children: [
+        Container(
+          color: Colors.blue,
+          height: 140,
+        ),
+        Column(
+          children: [
+            Container(
+                color: Colors.white,
+                height: 100,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      color: Colors.black26,
+                      width: 102,
+                    ),
+                    Container(
+                        width: 200,
+                        child: Text(
+                          widget.nome,
+                          style: const TextStyle(
+                              fontSize: 24, overflow: TextOverflow.ellipsis),
+                        )),
+                    Container(
+                      height: 52,
+                      width: 52,
+                      child: ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              nivel++;
+                            });
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              const Icon(Icons.arrow_drop_up),
+                              const Text(
+                                'UP',
+                                style: TextStyle(fontSize: 12),
+                              )
+                            ],
+                          )),
+                    )
+                  ],
+                )),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: 300,
+                    child: LinearProgressIndicator(
+                      color: Colors.white,
+                      value: nivel / 10,
+                    ),
+                  ),
+                  Text(
+                    'Nível: $nivel',
+                    style: const TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        )
+      ])),
+    );
   }
 }
