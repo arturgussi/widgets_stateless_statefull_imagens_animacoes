@@ -17,3 +17,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  
+  assets:
+    - assets/images/bike.webp
+    - assets/images/dash.png
+    - assets/images/jogar.jpg
+    - assets/images/livro.jpg
+    - assets/images/meditar.jpeg
