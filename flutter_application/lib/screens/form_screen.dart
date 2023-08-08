@@ -24,10 +24,8 @@ class _FormScreenState extends State<FormScreen> {
   }
 
   bool difficultyValidator(String? value) {
-    if (value != null && value.isEmpty) {
-      if (int.parse(value) > 5 || int.parse(value) < 1) {
-        return true;
-      }
+    if (value!.isEmpty || int.parse(value) > 5 || int.parse(value) < 1) {
+      return true;
     }
     return false;
   }
