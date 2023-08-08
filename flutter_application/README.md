@@ -113,7 +113,6 @@ Mostrar ao usuário que a informação foi enviada com o Snackbar:
 Para dar mais clareza sobre o app, criamos uma barra na parte inferior da tela que informa, ao usuário, que as informações inseridas no formulário estão corretas e sendo salvas. A snackbar pertence ao Scaffold e aparece apenas quando todas as validações dão certo (e desaparece automaticamente)!
 
 Entender os conceitos de navegação e rotas:
-
 Aprendemos dois conceitos importantes: navegação e rotas. No mundo real, navegação é o ato de ir de uma tela a outra; rota é o caminho de um lugar a outro. Em Flutter, o widget Navigator permite a navegação entre duas telas. Já routes, (“rotas”) são as telas que serão trocadas durante a navegação.
 Identificar os principais tipos de navegação:
 
@@ -149,3 +148,18 @@ Ao fim de um projeto, são boas práticas revisar o código, testar o projeto, e
 
 Solucionar o bug que resetava o nível da tarefa
 Ao subir ou descer a tela, o app reseta a informação de nível da tarefa! Como impedir isso? Colocamos o int nível acima do @override, evitando o reset do estado quando a informação “sai” da tela. Também fizemos ajustes em todos os pontos do código em que aparece o nível.
+
+
+Curso 3:
+
+Conhecer o que é persistência interna: O ato de salvar informações no dispositivo. No nosso caso, como pessoas desenvolvedoras de aplicativos, precisamos entender como manipular arquivos para leitura e escrita em dispositivos móveis. Dessa forma, nossa aplicação pode se comunicar com um banco de dados fixo no dispositivo e recuperar informações.
+
+Saber o que são os pacotes: São bibliotecas criadas por membros da comunidade. Tais pacotes têm o poder de adicionar funcionalidades ao nosso projeto! Existem inúmeras possibilidades e você pode criar um pacote e disponibilizá-lo também!
+
+Instalar o SQFLite: O pacote que escolhemos para implementar persistência interna no nosso aplicativo. O SQFLite nos ajuda a criar um banco de dados sequencial (SQL) em nosso dispositivo, além de facilitar a comunicação entre o arquivo gerado e o nosso aplicativo em Flutter.
+
+Path/Caminho: Para abrir/criar um banco de dados, precisamos saber qual o caminho do arquivo; esse caminho é o endereço onde nosso arquivo foi salvo no dispositivo. Cada dispositivo possui um caminho diferente e, para sabermos qual o caminho padrão, utilizamos o pacote path.
+
+Estrutura de Dados: Quando montamos nosso banco de dados, estamos definindo/delimitando seu formato, quais serão suas características, sua quantidade de informação para cada dado salvo. No nosso caso, nossos dados precisam de nome, dificuldade, imagem (e quem sabe nível). Para isso, criamos uma variável do tipo string e nela usamos a linguagem SQL para produzir um banco de dados que será lido pelo SQFLite.
+
+DAO: Seguindo as boas práticas, implementamos uma forma de separação entre o banco de dados e o código em Flutter, garantindo que os métodos que se comunicam com o SQL sejam separados de quaisquer outros métodos que não interagem com o banco. O Objeto de Acesso a Dados (DAO) é considerado uma interface que integra e ao mesmo tempo divide o mundo do Flutter e o mundo do Back-End.
