@@ -19,4 +19,10 @@ flutter:
   uses-material-design: true
   
   assets:
+    - assets\images\bike.webp
+    - assets\images\dash.png
+    - assets\images\jogar.jpg
+    - assets\images\livro.jpg
+    - assets\images\meditar.jpeg
     - assets\images\nophoto.png
+    - assets\images\st,small,507x507-pad,600x600,f8f8f8.jpg

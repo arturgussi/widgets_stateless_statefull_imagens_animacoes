@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/screens/form_screen.dart';
 import 'package:flutter_application/screens/initial_screen.dart';
 // import 'package:flutter_application/primeira_tela.dart';
 
@@ -15,6 +14,6 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(primarySwatch: Colors.blue),
-        home: const FormScreen());
+        home: const InitialScreen());
   }
 }
