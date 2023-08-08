@@ -169,3 +169,11 @@ CRUD: Operações de manipulação para banco de dados, CRUD é um acrônimo vin
 Buscar Informações: Iniciamos nossa implementação do CRUD pelo Read (Leitura) e vimos como implementar as funções find() e findAll() que buscam informações do banco de dados através do método query() disponível para objetos do tipo Database, importado do pacote sqflite.
 
 Transformar Objetos: Notamos a necessidade de trabalhar com objetos do tipo Map<String,dynamic> e do tipo List<Task> quando nos envolvemos com o banco de dados. Assim, para que nosso projeto possa se comunicar com o banco de dados, aprendemos a transformar objetos do tipo mapa - vindo do banco de dados - para objetos do tipo Lista de Tarefas - usados para construir a tela.
+
+Insert (Inserir): Método essencial para adicionar informações ao banco de dados. No pacote sqflite, o insert() requer dois parâmetros obrigatórios: o nome da tabela [String table] e as informações a serem inseridas em formato de mapa [Map values]. Foi usado na função save() do nosso DAO.
+
+Implementar o método update (atualizar): Método para mudar, atualizar, reformular alguma informação já existente no banco de dados. Usado para tarefas que já foram criadas, o método update() foi utilizado na função save() do DAO após a verificação da existência prévia da tarefa a ser adicionada.
+
+Utilizar o método delete (deletar): Para remoção de informações do banco de dados, implementamos a função delete() capaz de verificar a existência de uma tarefa pelo nome e removê-la diretamente da tabela. Vale ressaltar que utilizar o nome da tarefa como verificação de controle não é a melhor das alternativas e que o ideal seria a utilização de um UUID.
+
+Fazer a conversão de Tarefa para Mapa: Assim como surgiu a necessidade de transformar mapas em listas de tarefas no passado, precisamos implementar a “conversão” inversa. Ou seja, a conversão de uma tarefa para um Map<String,dynamic> é necessária para inserir informações no banco de dados sequencial do sqflite.

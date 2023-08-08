@@ -13,7 +13,22 @@ class TaskDao {
   static const String _difficulty = 'difficulty';
   static const String _image = 'image';
 
-  save(Task task) async {}
+  save(Task task) async {
+    print('Iniciando o Save: ');
+
+    final Database database = await getDatabase();
+    var itemExists = await find(task.nome);
+    Map<String, dynamic> taskMap = toMap(task);
+
+    if (itemExists.isEmpty) {
+      print('A tarefa não existia');
+      return await database.insert(_tablename, taskMap);
+    } else {
+      print('A tarefa já existia');
+      return await database.update(_tablename, taskMap,
+          where: '$_name = ?', whereArgs: [task.nome]);
+    }
+  }
 
   Future<List<Task>> findAll() async {
     print('Acessando o findAll: ');
@@ -23,6 +38,27 @@ class TaskDao {
     print('Procurando dados no banco de dados... encontrado $result');
 
     return toList(result);
+  }
+
+  Future<List<Task>> find(String taskName) async {
+    print('Acessando o find: ');
+
+    final Database database = await getDatabase();
+    final List<Map<String, dynamic>> result = await database
+        .query(_tablename, where: '$_name = ?', whereArgs: [taskName]);
+
+    print('Tarefa encontrada: ${toList(result)}');
+
+    return toList(result);
+  }
+
+  delete(String taskName) async {
+    print('Deletando tareffa: $taskName');
+
+    final Database database = await getDatabase();
+
+    return database
+        .delete(_tablename, where: '$_name = ?', whereArgs: [taskName]);
   }
 
   List<Task> toList(List<Map<String, dynamic>> tasksMap) {
@@ -40,17 +76,17 @@ class TaskDao {
     return tasks;
   }
 
-  Future<List<Task>> find(String taskName) async {
-    print('Acessando o find: ');
+  Map<String, dynamic> toMap(Task task) {
+    print('Convertendo toMap: ');
 
-    final Database database = await getDatabase();
-    final List<Map<String, dynamic>> result = await database
-        .query(_tablename, where: '$_name = ?', whereArgs: [taskName]);
+    final Map<String, dynamic> tasksMap = Map();
 
-    print('Tarefa encontrada: ${toList(result)}');
+    tasksMap[_name] = task.nome;
+    tasksMap[_difficulty] = task.dificuldade;
+    tasksMap[_image] = task.foto;
 
-    return toList(result);
+    print('Mapa de tarefas: $tasksMap');
+
+    return tasksMap;
   }
-
-  delete(String taskName) async {}
 }
