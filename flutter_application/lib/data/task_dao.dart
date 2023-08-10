@@ -34,7 +34,9 @@ class TaskDao {
     print('Acessando o findAll: ');
 
     final Database database = await getDatabase();
+    print('DB OK');
     final List<Map<String, dynamic>> result = await database.query(_tablename);
+
     print('Procurando dados no banco de dados... encontrado $result');
 
     return toList(result);
@@ -52,12 +54,12 @@ class TaskDao {
     return toList(result);
   }
 
-  delete(String taskName) async {
+  static delete(String taskName) async {
     print('Deletando tareffa: $taskName');
 
     final Database database = await getDatabase();
 
-    return database
+    return await database
         .delete(_tablename, where: '$_name = ?', whereArgs: [taskName]);
   }
 

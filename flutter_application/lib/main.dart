@@ -1,3 +1,5 @@
+// ./gradlew clean build
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application/data/task_inherited.dart';
 import 'package:flutter_application/screens/initial_screen.dart';
