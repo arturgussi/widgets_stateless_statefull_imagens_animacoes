@@ -68,13 +68,12 @@ class _TaskState extends State<Task> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                            width: 200,
-                            child: Text(
-                              widget.nome,
-                              style: const TextStyle(
-                                  fontSize: 24,
-                                  overflow: TextOverflow.ellipsis),
-                            )),
+                          width: 200,
+                          child: Text(
+                            widget.nome,
+                            style: Theme.of(context).textTheme.displaySmall,
+                          ),
+                        ),
                         Difficulty(
                           difficultyLevel: widget.dificuldade,
                         )
@@ -92,14 +91,16 @@ class _TaskState extends State<Task> {
                               widget.nivel++;
                             });
                           },
-                          child: const Column(
+                          child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Icon(Icons.arrow_drop_up),
+                              const Icon(Icons.arrow_drop_up),
                               Text(
                                 'UP',
-                                style: TextStyle(fontSize: 12),
+                                style: Theme.of(context)
+                                    .primaryTextTheme
+                                    .labelMedium,
                               )
                             ],
                           )),
@@ -122,10 +123,7 @@ class _TaskState extends State<Task> {
                   ),
                   Text(
                     'Nível: ${widget.nivel}',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onPrimaryContainer,
-                      fontSize: 16,
-                    ),
+                    style: Theme.of(context).primaryTextTheme.labelLarge,
                   ),
                 ],
               ),
